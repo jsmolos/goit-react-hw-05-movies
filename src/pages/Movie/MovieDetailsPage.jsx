@@ -3,7 +3,7 @@ import { useParams, Link } from 'react-router-dom';
 import { fetchMovieDetails } from 'api/api';
 import css from './MovieDetailsPage.module.css';
 
-export const MovieDetailsPage = () => {
+const MovieDetailsPage = () => {
   const { movieId } = useParams();
   const [movieDetails, setMovieDetails] = useState(null);
 
@@ -55,3 +55,5 @@ export const MovieDetailsPage = () => {
     </>
   );
 };
+
+export default MovieDetailsPage;
