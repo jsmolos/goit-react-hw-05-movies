@@ -1,16 +1,22 @@
+import { Routes, Route } from 'react-router-dom';
+import { HomePage } from 'pages/Home/HomePage';
+import { MoviesPage } from 'pages/Movies/MoviesPage';
+import { MovieDetailsPage } from 'pages/Movie/MovieDetailsPage';
+import { NotFoundPage } from 'pages/NotFoundPage';
+import { SharedLayout } from 'pages/Shared/SharedLayout';
+
 export const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      <Routes>
+        <Route path="/" element={<SharedLayout />}>
+          <Route index element={<HomePage />} />
+          <Route path="movies" element={<MoviesPage />}>
+            <Route path=":movieId" element={<MovieDetailsPage />} />
+          </Route>
+        </Route>
+        <Route path="*" element={<NotFoundPage />} />
+      </Routes>
     </div>
   );
 };
