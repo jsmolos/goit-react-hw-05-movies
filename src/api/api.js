@@ -24,13 +24,23 @@ export const fetchMovieDetails = async movieId => {
 };
 
 export const fetchMovieCast = async movieId => {
-  const response = await axios.get(`movie/${movieId}/credits?`);
-  return response.data.cast;
+  try {
+    const response = await axios.get(`movie/${movieId}/credits`);
+    return response.data.cast;
+  } catch (error) {
+    console.error('Error fetching movie cast:', error);
+    throw error; 
+  }
 };
 
 export const fetchMovieReviews = async movieId => {
-  const response = await axios.get(`movie/${movieId}/reviews?`);
-  return response.data.results;
+  try {
+    const response = await axios.get(`movie/${movieId}/reviews`);
+    return response.data.results;
+  } catch (error) {
+    console.error('Error fetching movie reviews:', error);
+    throw error; 
+  }
 };
 
 

@@ -1,11 +1,11 @@
 import React, { lazy } from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { SharedLayout } from 'pages/Shared/SharedLayout';
 
 const HomePage = lazy(() => import('pages/Home/HomePage'));
 const MoviesPage = lazy(() => import('pages/Movies/MoviesPage'));
 const MovieDetailsPage = lazy(() => import('pages/Movie/MovieDetailsPage'));
-const NotFoundPage = lazy(() => import('pages/NotFoundPage'));
+/*const NotFoundPage = lazy(() => import('pages/NotFoundPage'));*/
 
 const CastList = lazy(() => import('components/Cast/CastList'));
 const ReviewsList = lazy(() => import('components/Reviews/ReviewsList'));
@@ -21,8 +21,9 @@ export const App = () => {
             <Route path="cast" element={<CastList />} />
             <Route path="reviews" element={<ReviewsList />} />
           </Route>
+          
+          <Route path="*" element={<Navigate to="/" />} />
         </Route>
-        <Route path="*" element={<NotFoundPage />} />
       </Routes>
     </div>
   );

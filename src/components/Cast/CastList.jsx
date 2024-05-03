@@ -6,12 +6,14 @@ import { CastListItem } from 'components/CastListItem/CastListItem';
 const CastList = () => {
   const { movieId } = useParams();
   const [cast, setCast] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCast = async () => {
       try {
         const response = await fetchMovieCast(movieId);
         setCast(response);
+        setLoading(false);
       } catch (error) {
         console.error(error);
       }
@@ -22,7 +24,9 @@ const CastList = () => {
 
   return (
     <>
-      {cast.length !== 0 ? (
+      {loading ? (
+        <div>Loading cast...</div>
+      ) : cast.length !== 0 ? (
         <div>
           <h2>Movie Cast</h2>
           <ul>
