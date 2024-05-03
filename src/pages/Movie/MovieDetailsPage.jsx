@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import { useParams, Link, Routes, Route, Outlet } from 'react-router-dom';
+import { useParams, Link, Outlet } from 'react-router-dom';
 import { fetchMovieDetails } from 'api/api';
 import { Suspense } from 'react';
 import css from './MovieDetailsPage.module.css';
-import CastList from 'components/Cast/CastList';
-import ReviewsList from 'components/Reviews/ReviewsList';
+
 
 const MovieDetailsPage = () => {
   const { movieId } = useParams();
@@ -58,22 +57,22 @@ const MovieDetailsPage = () => {
             <Route path="cast" element={<CastList />} />
             <Route path="reviews" element={<ReviewsList />} />
           </Routes>*/}
-          <hr />
-        <h3>Additional information</h3>
-        <Link to="cast" className={css.link}>
-          <button className={css.infoButton}>Cast</button>
-        </Link>
-        <Link to="reviews" className={css.link}>
-          <button className={css.infoButton}>Reviews</button>
-        </Link>
-        <hr />
-        <Suspense fallback={<div>Loading...</div>}>
-          <Outlet />
-        </Suspense>
+          
         </div>
       </div>
 
-      
+      <hr />
+      <h3>Additional information</h3>
+      <Link to="cast" className={css.link}>
+         <button className={css.infoButton}>Cast</button>
+      </Link>
+      <Link to="reviews" className={css.link}>
+         <button className={css.infoButton}>Reviews</button>
+      </Link>
+      <hr />
+      <Suspense fallback={<div>Loading...</div>}>
+         <Outlet />
+      </Suspense>
     </>
   );
 };
